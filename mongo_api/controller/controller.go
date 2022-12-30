@@ -15,7 +15,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-const connectionString = "mongodb+srv://username:pass@cluster0.8weplsc.mongodb.net/?retryWrites=true&w=majority"
+const connectionString = "mongodb+srv://userName:pass@cluster0.8weplsc.mongodb.net/?retryWrites=true&w=majority"
 const dbName = "netflix"
 const colName = "watchlist"
 
@@ -40,6 +40,8 @@ func init() { //runs at the start but only one time
 	// collection instance
 	fmt.Println("Collection instance is ready")
 }
+
+// Service Layer
 
 // Insert One Record
 func insertOneMovie(movie model.Netflix) {
