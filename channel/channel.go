@@ -17,6 +17,7 @@ func main() {
 	wg := &sync.WaitGroup{}
 
 	wg.Add(2)
+	// Receiver Goroutine
 	go func(chn <-chan int, wg *sync.WaitGroup) {
 		// close(chn) will be invalid because in the parameter we have declared it as
 		fmt.Println(<-chn)
@@ -24,6 +25,7 @@ func main() {
 		wg.Done()
 	}(chn, wg)
 
+	// Sender Goroutine (Read only)
 	go func(chn chan<- int, wg *sync.WaitGroup) {
 		chn <- 5
 		chn <- 6
