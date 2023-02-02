@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gin-deploy
+spec:
+  selector:
+    matchLabels:
+      app: gin-deploy
+  template:
+    metadata:
+      labels:
+        app: gin-deploy
+    spec:
+      containers:
+      - name: gin-deploy
+        image: gin-demo
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8081
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gin-service
+spec:
+  selector:
+    app: gin-deploy
+  ports:
+  - port: 8086
+    targetPort: 8081
+
